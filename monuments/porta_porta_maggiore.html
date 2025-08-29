@@ -1,40 +1,158 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Porta Maggiore</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    pre {
+      background: #f3e6ff;
+      border-left: 4px solid #6a0dad;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #6a0dad;
+      color: white;
+    }
+  </style>
 </head>
 <body>
+  <!-- NAVBAR -->
   <nav>
-  <ul>
-    <li><a href="../index.html">🏠 Home</a></li>
-    <li><a href="../methodology.html">Methodology</a></li>
-    <li><a href="../sparql.html">SPARQL Queries</a></li>
-    <li>
-      <a href="#">Monuments ▼</a>
-      <ul>
-        <li><a href="../monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="../monuments/porta_porta_san_felice.html">Porta San Felice</a></li>
-        <li><a href="../monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-        <li><a href="../monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-        <li><a href="../monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-        <li><a href="../monuments/porta_porta_saragozza.html">Porta Saragozza</a></li>
-        <li><a href="../monuments/porta_porta_santisaia.html">Porta Sant'Isaia</a></li>
-        <li><a href="../monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-        <li><a href="../monuments/porta_porta_galliera.html">Porta Galliera</a></li>
-        <li><a href="../monuments/porta_porta_mascarella.html">Porta Mascarella</a></li>
-        <li><a href="../monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-        <li><a href="../monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
-    <li><a href="../challenges.html">Faced Challenges</a></li>
-    <li><a href="../conclusions.html">Conclusions</a></li>
-  </ul>
-</nav>
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../sparql.html">SPARQL Queries</a></li>
+      <li>
+        <a href="#">Monuments ▼</a>
+        <ul>
+          <li><a href="porta_maggiore.html">Porta Maggiore</a></li>
+          <!-- Add the other gates here -->
+        </ul>
+      </li>
+      <li><a href="../challenges.html">Faced Challenges</a></li>
+      <li><a href="../conclusions.html">Conclusions</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTENT -->
   <section>
-    <h1>Porta Maggiore</h1>
-    <p>Sezione dedicata a Porta Maggiore. Qui puoi inserire i contenuti relativi.</p>
+    <h1>Porta Maggiore (also known as Porta Mazzini)</h1>
+    <p>
+      Porta Maggiore is one of the historic gates of Bologna, dating back to the 
+      medieval walls. It is also referred to as <i>Porta Mazzini</i>. This page 
+      presents the results of SPARQL queries executed on the ArCo dataset to 
+      retrieve structured information about this monument.
+    </p>
+
+    <!-- IMAGE -->
+    <div class="img-container">
+      <img src="../img/porta_maggiore.jpg" alt="Porta Maggiore, Bologna">
+      <p><i>Figure 1: Porta Maggiore in Bologna (example image)</i></p>
+    </div>
+
+    <!-- TABLE SUMMARY -->
+    <h2>General Information</h2>
+    <table>
+      <tr><th>Identifier</th><td>0800241599</td></tr>
+      <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
+      <tr><th>Location</th><td>Bologna, Emilia-Romagna, Italy</td></tr>
+      <tr><th>Alternative name</th><td>Porta Mazzini</td></tr>
+      <tr><th>Restoration</th><td>2007–2009</td></tr>
+    </table>
+
+    <!-- QUERIES -->
+    <h2>SPARQL Query 1: Retrieve the Gate</h2>
+    <p>
+      The following query searches for architectural heritage labeled as 
+      <b>Porta Maggiore</b> in Bologna:
+    </p>
+    <pre>
+PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX cis:  &lt;http://dati.beniculturali.it/cis/&gt;
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
+  FILTER (REGEX(STR(?label), "Porta Maggiore", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+    </pre>
+
+    <h2>SPARQL Query 2: DESCRIBE</h2>
+    <p>
+      To retrieve all RDF triples related to the monument with identifier 
+      <b>0800241599</b>, a <code>DESCRIBE</code> query was executed:
+    </p>
+    <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+
+DESCRIBE ?s
+WHERE {
+  ?s arco:uniqueIdentifier "0800241599" .
+}
+ORDER BY ?s
+LIMIT 200
+    </pre>
+
+    <!-- IMAGE 2 -->
+    <div class="img-container">
+      <img src="../img/porta_maggiore_plan.jpg" alt="Plan of Porta Maggiore">
+      <p><i>Figure 2: Plan and structural details of Porta Maggiore</i></p>
+    </div>
+
+    <h2>Discussion</h2>
+    <p>
+      The queries confirm the existence of Porta Maggiore in the ArCo knowledge graph, 
+      associated with Bologna and classified as architectural heritage. The 
+      <code>DESCRIBE</code> query provides a rich set of metadata, including 
+      identifiers, classifications, and potential references to restoration events.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+      Porta Maggiore (Porta Mazzini) illustrates how Linked Open Data and SPARQL 
+      queries can be applied to retrieve and analyze cultural heritage information. 
+      This structured approach supports digital documentation, visualization, and 
+      comparative studies with other historic gates of Bologna.
+    </p>
   </section>
 </body>
 </html>
