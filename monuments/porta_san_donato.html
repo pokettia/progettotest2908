@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Porta San Donato</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    pre {
+      background: #f3e6ff;
+      border-left: 4px solid #6a0dad;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #6a0dad;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../sparql.html">SPARQL Queries</a></li>
+      <li>
+        <a href="#">Monuments ▼</a>
+        <ul>
+          <li><a href="porta_san_donato.html">Porta San Donato</a></li>
+          <!-- Add other gates here -->
+        </ul>
+      </li>
+      <li><a href="../challenges.html">Faced Challenges</a></li>
+      <li><a href="../conclusions.html">Conclusions</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h1>Porta San Donato (also known as Porta Zamboni)</h1>
+    <p>
+      Porta San Donato is one of the medieval gates of Bologna, located in the 
+      university district. It served both a defensive function and a role in 
+      regulating access to the city. The gate is also called <i>Porta Zamboni</i> 
+      after the street leading to it.
+    </p>
+
+    <div class="img-container">
+      <img src="../img/porta_san_donato.jpg" alt="Porta San Donato, Bologna">
+      <p><i>Figure 1: Porta San Donato today (example image)</i></p>
+    </div>
+
+    <h2>General Information</h2>
+    <table>
+      <tr><th>Identifier</th><td>0800241601</td></tr>
+      <tr><th>Type</th><td>Architectural Heritage (Gate)</td></tr>
+      <tr><th>Location</th><td>Bologna, Emilia-Romagna, Italy</td></tr>
+      <tr><th>Alternative name</th><td>Porta Zamboni</td></tr>
+      <tr><th>Construction</th><td>Medieval period</td></tr>
+    </table>
+
+    <h2>SPARQL Query 1: Retrieve the Gate</h2>
+    <p>
+      The following query searches for the monument labeled as 
+      <b>Porta San Donato</b> in Bologna.
+    </p>
+    <pre>
+PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  ?porta rdfs:label ?label .
+  FILTER (REGEX(STR(?label), "Porta San Donato", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+    </pre>
+
+    <h2>SPARQL Query 2: DESCRIBE</h2>
+    <p>
+      To collect all RDF triples related to this monument, the following 
+      <code>DESCRIBE</code> query can be used with its unique identifier.
+    </p>
+    <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+
+DESCRIBE ?s
+WHERE {
+  ?s arco:uniqueIdentifier "0800241601" .
+}
+ORDER BY ?s
+LIMIT 200
+    </pre>
+
+    <div class="img-container">
+      <img src="../img/porta_san_donato_plan.jpg" alt="Plan of Porta San Donato">
+      <p><i>Figure 2: Plan and structural details of Porta San Donato</i></p>
+    </div>
+
+    <h2>Discussion</h2>
+    <p>
+      The SPARQL queries confirm the classification of Porta San Donato as 
+      architectural heritage within the ArCo dataset. The metadata retrieved 
+      provide insight into its identifiers, historical context, and relation 
+      to the city of Bologna. The alternative name <i>Porta Zamboni</i> 
+      demonstrates the gate's strong connection to the university district.
+    </p>
+
+    <h2>Conclusion</h2>
+    <p>
+      Porta San Donato represents both a historical and cultural landmark 
+      of Bologna. By leveraging Linked Open Data and SPARQL queries, 
+      detailed information can be systematically retrieved, 
+      enabling comparative analysis with other medieval gates.
+    </p>
+  </section>
+</body>
+</html>
