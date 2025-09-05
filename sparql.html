@@ -3,42 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <title>SPARQL Queries</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    pre {
+      background: #f3e6ff;
+      border-left: 4px solid #6a0dad;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #6a0dad;
+      color: white;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      background: #6a0dad;
+      margin: 0;
+      display: flex;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+    }
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #7b1fa2;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li:hover > ul {
+      display: block;
+    }
+    nav ul li ul li a {
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
+
   <nav>
-  <ul>
-    <li><a href="index.html">🏠 Home</a></li>
-    <li><a href="methodology.html">Methodology</a></li>
-    <li><a href="sparql.html">SPARQL Queries</a></li>
-    <li>
-      <a href="#">Monuments ▼</a>
-      <ul>
-        <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="monuments/porta_porta_san_felice.html">Porta San Felice</a></li>
-        <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-        <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-        <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-        <li><a href="monuments/porta_porta_saragozza.html">Porta Saragozza</a></li>
-        <li><a href="monuments/porta_porta_santisaia.html">Porta Sant'Isaia</a></li>
-        <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-        <li><a href="monuments/porta_porta_galliera.html">Porta Galliera</a></li>
-        <li><a href="monuments/porta_porta_mascarella.html">Porta Mascarella</a></li>
-        <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-        <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
-    <li><a href="challenges.html">Faced Challenges</a></li>
-    <li><a href="conclusions.html">Conclusions</a></li>
-  </ul>
-</nav>
-  <section>
-    <h1>Query 1</h1>
-    <p>bla bla bla</p>
-    <h2>Query 2</h2>
-    <p>bla bla bla</p>
-    <h2>Query 3</h2>
-    <p>bla bla bla</p>
-  </section>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="methodology.html">Methodology</a></li>
+      <li><a href="sparql.html">SPARQL Queries</a></li>
+      <li>
+        <a href="#">Monuments ▼</a>
+        <ul>
+            <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
+            <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
+            <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
+            <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
+            <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
+            <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
+            <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
+        </ul>
+      </li>
+      <li><a href="challenges.html">Faced Challenges</a></li>
+      <li><a href="conclusions.html">Conclusions</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Query utilizzate</h1>
+    <p>Le query utilizzate sono state fondamentali per interrogare i dati disponibili e ottenere informazioni specifiche sui monumenti analizzati. Qui riportiamo tre esempi principali, con la spiegazione del loro scopo e funzionamento.</p>
+
+    <h2>Query SELECT DISTINCT</h2>
+    <p>
+      Questa query viene utilizzata per estrarre un insieme di risultati unici (senza duplicati) da un dataset RDF. 
+      Nel nostro caso serve per cercare i monumenti di tipo <i>ArchitecturalOrLandscapeHeritage</i> che hanno determinate etichette (label), denominazioni o titoli, filtrando solo quelli che contengono il nome di una porta specifica e la città di Bologna.
+    </p>
+    <p><b>Esempio preso da porta_porta_maggiore.html:</b></p>
+    <pre>
+PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core/&gt;
+PREFIX cis:  &lt;http://dati.beniculturali.it/cis/&gt;
+
+SELECT DISTINCT ?porta ?label
+WHERE {
+  ?porta rdf:type arco:ArchitecturalOrLandscapeHeritage .
+  { ?porta rdfs:label ?label }
+  UNION { ?porta cis:name ?label }
+  UNION { ?porta arco-core:hasTitle ?title .
+           ?title rdfs:label ?label }
+  UNION { ?porta arco-core:hasDenomination ?den .
+           ?den rdfs:label ?label }
+  FILTER (REGEX(STR(?label), "Porta Maggiore", "i"))
+  FILTER (REGEX(STR(?label), "Bologna", "i"))
+}
+LIMIT 100
+    </pre>
+
+    <h2>Query DESCRIBE</h2>
+    <p>
+      La query <code>DESCRIBE</code> serve per ottenere tutte le informazioni RDF collegate a una specifica risorsa. 
+      In questo caso, a partire da un identificativo unico, vengono restituite tutte le proprietà e i valori relativi al monumento in questione, permettendo di avere una descrizione dettagliata dell'entità.
+    </p>
+    <p><b>Esempio preso da porta_porta_san_donato.html:</b></p>
+    <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+
+DESCRIBE ?s
+WHERE {
+  ?s arco:uniqueIdentifier "0800241601" .
+}
+ORDER BY ?s
+LIMIT 200
+    </pre>
+
+    <h2>Query CONSTRUCT</h2>
+    <p>
+      La query <code>CONSTRUCT</code> viene utilizzata per creare nuovi grafi RDF a partire dai dati esistenti. 
+      È utile per riorganizzare, arricchire o presentare le informazioni in un formato diverso rispetto a quello originario. 
+      Nell'esempio, si costruisce un grafo che descrive elementi storici, materiali, eventi e caratteristiche architettoniche legate alla porta.
+    </p>
+    <p><b>Esempio preso da porta_porta_delle_lame.html:</b></p>
+    <pre>
+PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description&gt;
+PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
+PREFIX arco-event: &lt;https://w3id.org/arco/ontology/cultural-event&gt;
+PREFIX arco-core: &lt;https://w3id.org/arco/ontology/core&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1&gt;
+
+CONSTRUCT {
+  
+    arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
+    arco-cons:hasArchitecturalOrder "baroque"@en ;
+    arco-den:hasMaterial "brick"@en ;
+    arco-event:hasRelatedEvent "battle of Porta Lame during WWII"@en ;
+    arco-core:describes "the latin name Lame refers to swamps"@en ;
+    arco-core:isPartOf "Bologna's city gates"@en ;
+    arco-den:AffixedElement "two lions"@en .
+}
+WHERE {
+  FILTER (true)
+}
+    </pre>
+  </main>
+
 </body>
 </html>
