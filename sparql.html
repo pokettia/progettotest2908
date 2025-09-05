@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SPARQL Queries</title>
+  <title>Porta San Donato</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     pre {
       background: #f3e6ff;
@@ -40,43 +40,10 @@
       background: #6a0dad;
       color: white;
     }
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      background: #6a0dad;
-      margin: 0;
-      display: flex;
-    }
-    nav ul li {
-      position: relative;
-    }
-    nav ul li a {
-      display: block;
-      padding: 10px 15px;
-      color: white;
-      text-decoration: none;
-    }
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #7b1fa2;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    nav ul li:hover > ul {
-      display: block;
-    }
-    nav ul li ul li a {
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
-
-  <nav>
+ <nav>
     <ul>
       <li><a href="index.html">🏠 Home</a></li>
       <li><a href="methodology.html">Methodology</a></li>
@@ -84,13 +51,18 @@
       <li>
         <a href="#">Monuments ▼</a>
         <ul>
-          <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-          <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-          <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-          <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-          <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-          <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-          <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
+            <li>
+      <a href="#">Monuments ▼</a>
+        <ul>
+            <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
+            <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
+            <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
+            <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
+            <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
+            <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
+            <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
+      </ul>
+    </li>
         </ul>
       </li>
       <li><a href="challenges.html">Faced Challenges</a></li>
@@ -98,7 +70,7 @@
     </ul>
   </nav>
 
-  <main>
+  <section>
     <h1>Queries Used</h1>
     <p>The queries used have been fundamental for querying the available data and obtaining specific information about the monuments analyzed. Here are three main examples, along with explanations of their purpose and how they work.</p>
 
@@ -171,7 +143,7 @@ WHERE {
   FILTER (true)
 }
     </pre>
-  </main>
+  </section>
 
 </body>
 </html>
