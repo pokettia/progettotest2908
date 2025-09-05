@@ -1,142 +1,174 @@
-<!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Methodology</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Porta San Donato</title>
+  <link rel="stylesheet" href="../style.css">
   <style>
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; margin: 0; background: #faf7ff; color: #222; }
-header { background: linear-gradient(90deg,#4b0082,#6a0dad); color: #fff; padding: 28px 18px; }
-header h1 { margin: 0 0 6px; font-size: 28px; }
-header p { margin: 0; opacity: .9; }
-nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #ead8ff; z-index: 10; }
-nav ul { max-width: 1100px; margin: 0 auto; padding: 8px 16px; display: flex; gap: 10px; list-style: none; overflow-x: auto; }
-nav a { display: block; padding: 8px 12px; border-radius: 999px; text-decoration: none; color: #4b0082; border: 1px solid #e9d9ff; background: #fff; white-space: nowrap; }
-nav a:hover { background: #f3e6ff; }
-main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; line-height: 1.55; }
-section { background: #fff; border: 1px solid #efdefd; border-radius: 14px; padding: 18px; margin: 18px 0; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
-h2 { color: #4b0082; margin-top: 30px; }
-h3 { margin-top: 20px; color: #33124d; }
-ul { padding-left: 18px; }
-code, kbd { background: #f7efff; padding: 2px 6px; border-radius: 6px; border: 1px solid #ead8ff; }
-a { color: #6a0dad; }
-a:hover { text-decoration: underline; }
-.note { background: #f8f3ff; border-left: 4px solid #6a0dad; padding: 10px 12px; border-radius: 10px; }
-pre {
-background: #f3e6ff;
-border-left: 4px solid #6a0dad;
-padding: 10px;
-overflow-x: auto;
-border-radius: 8px;
-font-size: 14px;
-}
-.img-container { text-align: center; margin: 20px 0; }
-.img-container img { max-width: 80%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-table { border-collapse: collapse; margin: 20px auto; width: 80%; background: #fff; }
-th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-th { background: #6a0dad; color: white; }
-footer { text-align: center; color: #5d4a70; padding: 24px 16px; }
-</style>
+    pre {
+      background: #f3e6ff;
+      border-left: 4px solid #6a0dad;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    h2 {
+      color: #4b0082;
+      margin-top: 30px;
+    }
+    .img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .img-container img {
+      max-width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #6a0dad;
+      color: white;
+    }
+  </style>
 </head>
-  <header>
-<h1>ArCo Project — Summary & Guidelines</h1>
-<p>A concise guide to the methodology, ontology reminders, example queries, LLM usage, website requirements, and exam delivery.</p>
-</header>
 <body>
   <nav>
-  <ul>
-    <li><a href="index.html">🏠 Home</a></li>
-    <li><a href="methodology.html">Methodology</a></li>
-    <li><a href="sparql.html">SPARQL Queries</a></li>
-    <li>
-      <a href="#">Monuments ▼</a>
-      <ul>
-        <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-        <li><a href="monuments/porta_porta_san_felice.html">Porta San Felice</a></li>
-        <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-        <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-        <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-        <li><a href="monuments/porta_porta_saragozza.html">Porta Saragozza</a></li>
-        <li><a href="monuments/porta_porta_santisaia.html">Porta Sant'Isaia</a></li>
-        <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-        <li><a href="monuments/porta_porta_galliera.html">Porta Galliera</a></li>
-        <li><a href="monuments/porta_porta_mascarella.html">Porta Mascarella</a></li>
-        <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-        <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
-    <li><a href="challenges.html">Faced Challenges</a></li>
-    <li><a href="conclusions.html">Conclusions</a></li>
-  </ul>
-</nav>
- <main>
-FILTER(?cp1 != ?cp2)
+    <ul>
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="../methodology.html">Methodology</a></li>
+      <li><a href="../sparql.html">SPARQL Queries</a></li>
+      <li>
+        <a href="#">Monuments ▼</a>
+        <ul>
+          <li><a href="porta_san_donato.html">Porta San Donato</a></li>
+          <!-- Add other gates here -->
+        </ul>
+      </li>
+      <li><a href="../challenges.html">Faced Challenges</a></li>
+      <li><a href="../conclusions.html">Conclusions</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Methodology by Example: ArCo & Cultural Heritage</h1>
+
+    <h2>1. Project Idea</h2>
+    <p>
+      Use a knowledge graph (any) as subject of the project. Here, the
+      <strong>ArCo Knowledge Graph</strong> is used as an example to showcase
+      methodology: discover a topic, run SPARQL queries, use LLMs for enrichment,
+      verify results, and publish findings on a GitHub-based website.
+    </p>
+
+    <h2>2. ArCo Ontology Overview</h2>
+    <ul>
+      <li><strong>ArCo</strong> is a <em>network of ontologies</em> for Italian cultural heritage.</li>
+      <li><strong>Core ontology</strong>: general concepts (Agent, CulturalEntity, Location).</li>
+      <li><strong>Denotative Description</strong>: measurable/cataloguing attributes (dimension, material, technique).</li>
+      <li><strong>Context Description</strong>: contextual attributes (authorship, subject, conservation, iconclass).</li>
+      <li>Other modules cover specific domains (events, instruments, etc.).</li>
+    </ul>
+
+    <h2>3. Workflow / Methodology</h2>
+    <ol>
+      <li>Explore ontologies + KG (ArCo docs, modules).</li>
+      <li>Identify useful classes/properties (e.g. <code>a-cd:Subject</code>, <code>a-cd:hasSubject</code>).</li>
+      <li>Form SPARQL queries against <a href="https://dati.cultura.gov.it/sparql" target="_blank">ArCo endpoint</a>.</li>
+      <li>Select a topic (e.g. artworks with same subject or iconclass).</li>
+      <li>Use LLMs to extract information & propose triples.</li>
+      <li>Verify if information exists in ArCo before adding.</li>
+      <li>Create enriched triples and document provenance.</li>
+      <li>Publish results on GitHub Pages.</li>
+    </ol>
+
+    <h2>4. Example Query: Tondo Doni (Michelangelo)</h2>
+    <pre>
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+SELECT DISTINCT ?x ?l ?p ?o
+WHERE {
+  ?x a arco:HistoricOrArtisticProperty ;
+     rdfs:label ?l ;
+     ?p ?o .
+  FILTER(regex(str(?l), "tondo doni", "i"))
 }
-LIMIT 100</code></pre>
+    </pre>
 
+    <h2>5. Subjects in ArCo (Q1)</h2>
+    <pre>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
-<p class="note">Tip: use the <a href="https://dati.cultura.gov.it/sparql" target="_blank" rel="noopener">SPARQL endpoint</a> to run these queries and iterate.</p>
-</section>
+SELECT DISTINCT ?subject ?label
+WHERE {
+  ?subject a a-cd:Subject ;
+           rdfs:label ?label .
+}
+LIMIT 20
+    </pre>
 
+    <h2>6. Artworks Sharing Same Iconclass (Q2)</h2>
+    <pre>
+PREFIX a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt;
+PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
-<section id="website">
-<h2>Website Requirements (for your project)</h2>
-<ul>
-<li>Publish the entire site on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.</li>
-<li>Make all code and materials public in a GitHub repository.</li>
-<li>Include a <strong>homepage</strong> (<code>index.html</code>) with a project title, abstract, and team members.</li>
-<li>Add a simple, consistent <strong>menu</strong> visible in the same position on every page.</li>
-<li>Sections to include:
-<ul>
-<li><strong>Topic</strong>: context and background.</li>
-<li><strong>Methodology</strong>: how you identified the gap; overall process and tools.</li>
-<li><strong>Methodological Steps</strong>: pages with SPARQL queries and prompts, example outputs, challenges and solutions, and differences observed across LLMs.</li>
-<li><strong>Report</strong>: methodology to build your stories, tools (e.g., Melody), data sources.</li>
-<li><strong>Challenges</strong>: what you faced and how you addressed them.</li>
-</ul>
-</li>
-<li>Whenever you mention a web-browsable topic, include an outbound link.</li>
-</ul>
-</section>
+SELECT DISTINCT ?cp1 ?cp1label ?cp2 ?cp2label ?code
+WHERE {
+  ?cp1 a arco:CulturalProperty ;
+       a-cd:iconclassCode ?code ;
+       rdfs:label ?cp1label .
+  ?cp2 a arco:CulturalProperty ;
+       a-cd:iconclassCode ?code ;
+       rdfs:label ?cp2label .
+  FILTER(?cp1 != ?cp2)
+  FILTER(str(?code) != "")
+}
+LIMIT 100
+    </pre>
 
+    <h2>7. RDF Example (using ArCo Ontology)</h2>
+    <pre>
+@prefix arco: &lt;https://w3id.org/arco/ontology/arco/&gt; .
+@prefix a-cd: &lt;https://w3id.org/arco/ontology/contextdescription/&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
-<section id="exam">
-<h2>Exam & Delivery</h2>
-<ul>
-<li>Present the project with slides covering methodology and outcomes.</li>
-<li>Follow the report’s outline, but use examples to illustrate steps (not everything must be in the slides).</li>
-<li>Timing: <strong>max 2 minutes per team member</strong>.</li>
-<li>Upload slides to GitHub <strong>48 hours before</strong> the exam and include a link to the website on the title slide.</li>
-</ul>
-</section>
+ex:Tondo_Doni a arco:CulturalProperty ;
+  a-cd:hasAuthor "Michelangelo" ;
+  a-cd:hasSubject ex:Sacra_Famiglia ;
+  rdfs:label "Tondo Doni" .
 
+ex:Sacra_Famiglia a a-cd:Subject ;
+  rdfs:label "Sacra Famiglia" .
+    </pre>
 
-<section id="resources">
-<h2>How-To Resources</h2>
-<table>
-<thead>
-<tr><th>Topic</th><th>Link</th></tr>
-</thead>
-<tbody>
-<tr>
-<td>Create a GitHub account & collaborate</td>
-<td><a href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account" target="_blank" rel="noopener">GitHub Getting Started</a></td>
-</tr>
-<tr>
-<td>Publish a website with GitHub Pages</td>
-<td><a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></td>
-</tr>
-<tr>
-<td>ArCo SPARQL endpoint</td>
-<td><a href="https://dati.cultura.gov.it/sparql" target="_blank" rel="noopener">ArCo SPARQL</a></td>
-</tr>
-<tr>
-<td>ArCo ontologies documentation</td>
-<td><a href="http://wit.istc.cnr.it/arco/" target="_blank" rel="noopener">ArCo Docs</a></td>
-</tr>
-</tbody>
-</table>
-</section>
-</main>
+    <h2>8. Website Requirements</h2>
+    <ul>
+      <li>Homepage with title, abstract, team members.</li>
+      <li>Simple consistent navigation menu.</li>
+      <li>Sections: topic, methodology, steps (SPARQL, prompts, results), challenges, report, conclusions.</li>
+      <li>All code, queries, RDF, and prompts must be uploaded to GitHub.</li>
+      <li>Website must be published with <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</li>
+    </ul>
+
+    <h2>9. Exam & Deliverables</h2>
+    <ul>
+      <li>Presentation max 2 minutes per team member.</li>
+      <li>Slides uploaded 48h before exam.</li>
+      <li>Title slide must include website link.</li>
+      <li>Show methodology + examples, details left to the website.</li>
+    </ul>
+  </main>
 </body>
 </html>
