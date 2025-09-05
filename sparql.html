@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Porta San Donato</title>
-  <link rel="stylesheet" href="style.css">
+  <title>SPARQL Queries</title>
   <style>
     pre {
       background: #f3e6ff;
@@ -40,10 +40,43 @@
       background: #6a0dad;
       color: white;
     }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      background: #6a0dad;
+      margin: 0;
+      display: flex;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+    }
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #7b1fa2;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li:hover > ul {
+      display: block;
+    }
+    nav ul li ul li a {
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
- <nav>
+
+  <nav>
     <ul>
       <li><a href="index.html">🏠 Home</a></li>
       <li><a href="methodology.html">Methodology</a></li>
@@ -51,18 +84,13 @@
       <li>
         <a href="#">Monuments ▼</a>
         <ul>
-            <li>
-      <a href="#">Monuments ▼</a>
-        <ul>
-            <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
-            <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
-            <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
-            <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
-            <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
-            <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
-            <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
-      </ul>
-    </li>
+          <li><a href="monuments/porta_porta_maggiore.html">Porta Maggiore</a></li>
+          <li><a href="monuments/porta_porta_santo_stefano.html">Porta Santo Stefano</a></li>
+          <li><a href="monuments/porta_porta_castiglione.html">Porta Castiglione</a></li>
+          <li><a href="monuments/porta_porta_san_mamolo.html">Porta San Mamolo</a></li>
+          <li><a href="monuments/porta_porta_delle_lame.html">Porta Delle Lame</a></li>
+          <li><a href="monuments/porta_porta_san_donato.html">Porta San Donato</a></li>
+          <li><a href="monuments/porta_porta_san_vitale.html">Porta San Vitale</a></li>
         </ul>
       </li>
       <li><a href="challenges.html">Faced Challenges</a></li>
@@ -70,17 +98,15 @@
     </ul>
   </nav>
 
+  <main>
+    <h1>Queries Used</h1>
+    <p>The queries used have been fundamental for querying the available data and obtaining specific information about the monuments analyzed. Here are three main examples, along with explanations of their purpose and how they work.</p>
 
-  <section>
-    <h1>Query utilizzate</h1>
-    <p>Le query utilizzate sono state fondamentali per interrogare i dati disponibili e ottenere informazioni specifiche sui monumenti analizzati. Qui riportiamo tre esempi principali, con la spiegazione del loro scopo e funzionamento.</p>
-
-    <h2>Query SELECT DISTINCT</h2>
+    <h2>SELECT DISTINCT Query</h2>
     <p>
-      Questa query viene utilizzata per estrarre un insieme di risultati unici (senza duplicati) da un dataset RDF. 
-      Nel nostro caso serve per cercare i monumenti di tipo <i>ArchitecturalOrLandscapeHeritage</i> che hanno determinate etichette (label), denominazioni o titoli, filtrando solo quelli che contengono il nome di una porta specifica e la città di Bologna.
+      This query is used to extract a unique set of results (without duplicates) from an RDF dataset. In our case, it is used to search for monuments of type <code>ArchitecturalOrLandscapeHeritage</code> that have certain labels, denominations, or titles, filtering only those that contain the name of a specific gate and the city of Bologna.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_maggiore.html">porta_porta_maggiore.html:</a></b></p>
+    <p><strong>Example taken from Porta Maggiore:</strong></p>
     <pre>
 PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -103,12 +129,11 @@ WHERE {
 LIMIT 100
     </pre>
 
-    <h2>Query DESCRIBE</h2>
+    <h2>DESCRIBE Query</h2>
     <p>
-      La query <code>DESCRIBE</code> serve per ottenere tutte le informazioni RDF collegate a una specifica risorsa. 
-      In questo caso, a partire da un identificativo unico, vengono restituite tutte le proprietà e i valori relativi al monumento in questione, permettendo di avere una descrizione dettagliata dell'entità.
+      The <code>DESCRIBE</code> query is used to retrieve all RDF information related to a specific resource. In this case, starting from a unique identifier, it returns all properties and values related to the monument in question, enabling a detailed description of the entity.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_san_donato.html">porta_porta_san_donato.html:</a></b></p>
+    <p><strong>Example taken from Porta San Donato:</strong></p>
     <pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 
@@ -120,13 +145,11 @@ ORDER BY ?s
 LIMIT 200
     </pre>
 
-    <h2>Query CONSTRUCT</h2>
+    <h2>CONSTRUCT Query</h2>
     <p>
-      La query <code>CONSTRUCT</code> viene utilizzata per creare nuovi grafi RDF a partire dai dati esistenti. 
-      È utile per riorganizzare, arricchire o presentare le informazioni in un formato diverso rispetto a quello originario. 
-      Nell'esempio, si costruisce un grafo che descrive elementi storici, materiali, eventi e caratteristiche architettoniche legate alla porta.
+      The <code>CONSTRUCT</code> query is used to build new RDF graphs from existing data. It is useful for reorganizing, enriching, or presenting information in a format different from the original. In the example, it constructs a graph that describes historical elements, materials, events, and architectural features related to the gate.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_delle_lame.html">porta_porta_delle_lame.html:</a></b></p>
+    <p><strong>Example taken from Porta Delle Lame:</strong></p>
     <pre>
 PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description&gt;
 PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
@@ -136,20 +159,19 @@ PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 PREFIX dc: &lt;http://purl.org/dc/elements/1.1&gt;
 
 CONSTRUCT {
-  
-    arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
-    arco-cons:hasArchitecturalOrder "baroque"@en ;
-    arco-den:hasMaterial "brick"@en ;
-    arco-event:hasRelatedEvent "battle of Porta Lame during WWII"@en ;
-    arco-core:describes "the latin name Lame refers to swamps"@en ;
-    arco-core:isPartOf "Bologna's city gates"@en ;
-    arco-den:AffixedElement "two lions"@en .
+  arco-cons:hasPreviousStructureOrElement "cassero medievale"@it ;
+  arco-cons:hasArchitecturalOrder "baroque"@en ;
+  arco-den:hasMaterial "brick"@en ;
+  arco-event:hasRelatedEvent "battle of Porta Lame during WWII"@en ;
+  arco-core:describes "the latin name Lame refers to swamps"@en ;
+  arco-core:isPartOf "Bologna's city gates"@en ;
+  arco-den:AffixedElement "two lions"@en .
 }
 WHERE {
   FILTER (true)
 }
     </pre>
-  </section>
+  </main>
 
 </body>
 </html>
