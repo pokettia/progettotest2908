@@ -101,7 +101,7 @@
     </ul>
   </nav>
 
-  <main>
+  <section>
     <h1>Query utilizzate</h1>
     <p>Le query utilizzate sono state fondamentali per interrogare i dati disponibili e ottenere informazioni specifiche sui monumenti analizzati. Qui riportiamo tre esempi principali, con la spiegazione del loro scopo e funzionamento.</p>
 
@@ -110,7 +110,7 @@
       Questa query viene utilizzata per estrarre un insieme di risultati unici (senza duplicati) da un dataset RDF. 
       Nel nostro caso serve per cercare i monumenti di tipo <i>ArchitecturalOrLandscapeHeritage</i> che hanno determinate etichette (label), denominazioni o titoli, filtrando solo quelli che contengono il nome di una porta specifica e la città di Bologna.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_maggiore.html">porta_porta_maggiore.html :</a>:</b></p>
+    <p><b>Esempio preso da <a href="monuments/porta_porta_maggiore.html">porta_porta_maggiore.html:</a></b></p>
     <pre>
 PREFIX rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -138,7 +138,7 @@ LIMIT 100
       La query <code>DESCRIBE</code> serve per ottenere tutte le informazioni RDF collegate a una specifica risorsa. 
       In questo caso, a partire da un identificativo unico, vengono restituite tutte le proprietà e i valori relativi al monumento in questione, permettendo di avere una descrizione dettagliata dell'entità.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_san_donato.html">porta_porta_san_donato.html :</a></b></p>
+    <p><b>Esempio preso da <a href="monuments/porta_porta_san_donato.html">porta_porta_san_donato.html:</a></b></p>
     <pre>
 PREFIX arco: &lt;https://w3id.org/arco/ontology/arco/&gt;
 
@@ -156,7 +156,7 @@ LIMIT 200
       È utile per riorganizzare, arricchire o presentare le informazioni in un formato diverso rispetto a quello originario. 
       Nell'esempio, si costruisce un grafo che descrive elementi storici, materiali, eventi e caratteristiche architettoniche legate alla porta.
     </p>
-    <p><b>Esempio preso da <a href="monuments/porta_porta_delle_lame.html">porta_porta_delle_lame.html :</a>:</b></p>
+    <p><b>Esempio preso da <a href="monuments/porta_porta_delle_lame.html">porta_porta_delle_lame.html:</a>:</b></p>
     <pre>
 PREFIX arco-cons: &lt;https://w3id.org/arco/ontology/construction-description&gt;
 PREFIX arco-den: &lt;https://w3id.org/arco/ontology/denotative-description&gt;
@@ -179,7 +179,7 @@ WHERE {
   FILTER (true)
 }
     </pre>
-  </main>
+  </section>
 
 </body>
 </html>
